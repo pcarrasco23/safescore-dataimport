@@ -1,0 +1,40 @@
+<div class="discovercontent">
+  <div class="row">
+    <div class="col-12 col-lg-9">
+      <div style="text-align:center;margin-bottom: 10px;">
+        <button type="button" class="btn btn-primary" (click)="onFindNearby()" style="display:inline-block;">
+          Find nearby
+        </button>
+      
+          <input #zipcode maxlength="5" class="form-control" id="zipCode"  placeholder="Enter zipcode" 
+            (keyup)="onZipCodeKey(zipcode.value)" (keyup.enter)="onGoToZipcode()" 
+            style="display:inline-block;margin-left: 20px;width:125px;">
+      </div>
+
+      <div>
+          <app-errorhandler [error]="error"></app-errorhandler>
+      </div>
+      
+      <agm-map 
+        [latitude] = "lat" 
+        [longitude] = "lng" 
+        [zoom] = "zoom" 
+        [class.markerSelected] = "selectedMarker != null"
+        [clickableIcons] = "clickableIcons"
+        [streetViewControl] = "streetViewControl"
+        [styles] = "mapTypeStyle"
+        (boundsChange) = "onBoundsChanged($event)"
+        (idle) = "onIdle($event)">
+        <agm-marker *ngFor="let marker of markers"
+          [latitude]="marker.latitude" 
+          [longitude]="marker.longitude" 
+          [iconUrl]="marker.iconUrl"
+          (markerClick)="onSelectMarker(marker)">
+        </agm-marker>
+      </agm-map>
+    </div>
+    <div class="col-12 col-lg-3">
+        <app-restaurantdetail [restaurant]="selectedRestaurant"></app-restaurantdetail>
+    </div>
+  </div>
+</div>

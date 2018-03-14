@@ -1,0 +1,39 @@
+.restaurantcontainer {
+    margin-right: 30px;
+}
+
+.inspections {
+    margin-bottom: 10px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.inspectioncontainer {
+    padding: 5px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.violationcontainer {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    display: none;
+}
+.inspectiondate {
+    display: inline-block;
+    width: 85px;
+}
+
+.inspectionbutton {
+    text-align: center;
+    width: 40px;
+}
+
+.violation {
+    margin-bottom: 10px;
+}
+
+.violationbutton {
+    width: 100px;
+    display: block;
+}

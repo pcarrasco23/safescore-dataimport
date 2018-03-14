@@ -1,0 +1,104 @@
+<div *ngIf="restaurant" class="restaurantcontainer">
+
+  <table style="width:100%;">
+    <tr>
+      <td colspan="2"><h2>{{ restaurant.name }}</h2></td>
+    </tr>
+    <tr>
+      <td style="width:250px;">{{ restaurant.cuisineDescription }}</td>
+      <td rowspan="4" style="text-align:left;">
+        <img *ngIf="restaurant.grade == 'A' && !restaurant.closed" src="/assets/images/a_grade.png"/>
+        <img *ngIf="restaurant.grade == 'B' && !restaurant.closed" src="/assets/images/b_grade.png"/>
+        <img *ngIf="restaurant.grade == 'C' && !restaurant.closed" src="/assets/images/c_grade.png"/>
+        <img *ngIf="(restaurant.grade == 'Z' || restaurant.grade == 'P' || restaurant.grade == '') && 
+            !restaurant.closed" src="/assets/images/pending_grade.png"/>
+        <img *ngIf="restaurant.closed" src="/assets/images/closed.png"/>
+      </td>
+    </tr>
+    <tr>
+      <td>{{ restaurant.streetNumber }} {{ restaurant. street }}</td>
+    </tr>
+    <tr>
+      <td>{{ restaurant.city }}, {{ restaurant.state }} {{ restaurant.zipCode }}</td>
+    </tr>
+    <tr>
+      <td>{{ restaurant.phoneNumber }}</td>
+    </tr>
+  </table>
+  <br/>
+  
+  <h5>Inspection History</h5>
+  <table class="table" style="width:100%;">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Grade</th>
+        <th scope="col">Score</th>
+        <th scope="col">Violations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let inspection of restaurant.inspections; let i = index;">
+        <td>{{ inspection.date | date : 'yyyy-MM-dd' }}</td>
+        <td>
+          <button *ngIf="inspection.grade == 'A'" type="button" class="btn btn-primary btn-sm inspectionbutton"
+            placement="top" popoverTitle="Grade A" ngbPopover="Restaurants with a score between 0 and 13 points earn an A.">
+              {{ inspection.grade }}
+          </button>
+          <button *ngIf="inspection.grade == 'B'" type="button" class="btn btn-success btn-sm inspectionbutton"
+            placement="top" popoverTitle="Grade B" ngbPopover="Restaurants with a score between 14 and 27 points earn an B.">
+            {{ inspection.grade }}
+          </button>
+          <button *ngIf="inspection.grade == 'C'" type="button" class="btn btn-warning btn-sm inspectionbutton"
+            placement="top" popoverTitle="Grade C" ngbPopover="Restaurants with a score 28 or more earn a C.">
+            {{ inspection.grade }}
+          </button>
+          <button *ngIf="inspection.grade == 'P'" type="button" class="btn btn-secondary btn-sm inspectionbutton"
+            placement="top" popoverTitle="Pending grade" ngbPopover="Restaurant's grade is pending reinspection.">
+              {{ inspection.grade }}
+          </button>
+          <button *ngIf="inspection.grade == 'Z'" type="button" class="btn btn-secondary btn-sm inspectionbutton"
+            placement="top" popoverTitle="Reinspection failed" ngbPopover="Restaurant failed reinspection.">
+              {{ inspection.grade }}
+          </button>
+          <button *ngIf="inspection.grade == ''" type="button" class="btn btn-secondary btn-sm inspectionbutton"
+            placement="top" popoverTitle="No grade" ngbPopover="Restaurant did not earn an A on its first inspection of the new cycle.">
+              NG
+          </button>
+        </td>
+        <td>
+          <button *ngIf="inspection.score <= 13 && inspection.score > 0" type="button" class="btn btn-primary btn-sm inspectionbutton">
+            {{ inspection.score }}
+          </button>
+          <button *ngIf="inspection.score <= 27 && inspection.score >= 14" type="button" class="btn btn-success btn-sm inspectionbutton">
+            {{ inspection.score }}
+          </button>
+          <button *ngIf="inspection.score >= 28" type="button" class="btn btn-warning btn-sm inspectionbutton">
+            {{ inspection.score }}
+          </button>
+          <button *ngIf="inspection.score <= 0" type="button" class="btn btn-secondary btn-sm inspectionbutton">
+            NS
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-secondary btn-sm inspectionbutton" (click)="toggleShowViolations(inspection)">
+            {{ inspection.violations?.length }}
+          </button>
+
+          <div *ngIf="selectedInspections.indexOf(inspection) >= 0">
+            <div *ngFor="let violation of inspection.violations" style="width: 350px;margin-left:-325px;margin-bottom: 10px;margin-top: 10px;">
+              <button *ngIf="violation.criticalFlag" type="button" class="btn btn-danger btn-sm violationbutton">
+                Critical
+              </button>
+              <button *ngIf="violation.criticalFlag == false" type="button" class="btn btn-secondary btn-sm violationbutton">
+                Not Critical
+              </button>
+      
+              {{ violation.description }}
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

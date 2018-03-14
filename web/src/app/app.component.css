@@ -1,0 +1,27 @@
+h1 {
+    color: #369;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 250%;
+}
+
+.buttons {
+    text-align: center;
+}
+
+.highlight {
+    background-color:#f7f7f9;
+}
+
+.howto tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.howto td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    vertical-align: top;
+}
+
+.howtoimgtd {
+    text-align: center;
+}

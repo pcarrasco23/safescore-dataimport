@@ -1,0 +1,71 @@
+<div class="searchcontent">
+  <div class="row">
+    <div class="col-12 col-lg-9">
+      <div>
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="exampleInputEmail1">Restaurant name</label>
+              <input #name type="text" class="form-control" id="restaurantName" placeholder="Enter name of restaurant"
+                (keyup)="onNameKey(name.value)" (keyup.enter)="submitSearch()" style="width:350px;">
+              <small id="nameHelp" class="form-text text-muted">Enter the first few letters if you don't know the full name.</small>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="exampleInputZipcode">Zip code</label>
+              <input #zipcode type="text" class="form-control" id="exampleInputZipcode" maxlength="5"
+                (keyup)="onZipcodeKey(zipcode.value)" (keyup.enter)="submitSearch()" style="width:100px;">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="exampleInputGrade">Grade</label>
+                <select #grade class="form-control" id="exampleInputGrade" 
+                  (change)="onGradeChanged(grade.value)" style="width:100px;">
+                  <option value=""></option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="Z">No grade</option>
+                  <option value="D">Closed</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+              &nbsp;
+            </div>
+          </div>
+          <div>
+              <app-errorhandler [error]="error"></app-errorhandler>
+          </div>
+          <button class="btn btn-primary" (click)="submitSearch()" style="margin-top: 10px;margin-bottom: 10px;">Submit</button>
+        </form>
+        
+        <div *ngIf="searchResponse">
+          <table class="table table-hover" style="width:100%;">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">City</th>
+                  <th scope="col">Zip</th>
+                  <th scope="col">Grade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of searchResponse.data" (click)="onSelect(row)">
+                  <td>{{ row.name }}</td>
+                  <td>{{ row.city }}</td>
+                  <td>{{ row.zipCode }}</td>
+                  <td>{{ row.grade }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <ngb-pagination [collectionSize]="searchResponse.count" [(page)]="page"
+              [maxSize]="6" [boundaryLinks]="true" (pageChange)="submitSearch()"></ngb-pagination>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="selectedRestaurant" class="col-12 col-lg-3">
+        <app-restaurantdetail [restaurant]="selectedRestaurant"></app-restaurantdetail>
+    </div>
+  </div>
+</div>
+
+

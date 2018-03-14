@@ -1,0 +1,358 @@
+<a href="https://github.com/you">
+    <img style="position: absolute; top: 0; right: 0; border: 0;z-index:20;" 
+    src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"/>
+</a>
+
+<div *ngIf="!appMode">
+    <div style="position:absolute;top:10px;left:30px;z-index:15;width:100%;">
+        <a href="#" (click)="hideApp()" style="text-decoration:none;">
+            <h1 style="font-weight:600;font-size:40px;color:#fff;">SafeScore</h1>
+        </a>
+    </div>
+            
+    <div>
+        <img src="/assets/images/safescorejumbo.png" class="img-fluid" alt="Responsive image"/>
+        
+        <div class="buttons" style="margin-top:-50px;" (click)="showApp()">
+            <button type="button" class="btn btn-primary">
+                GO TO THE APP
+            </button> 
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:40px !important;margin-left: 30px;">
+        <div class="col-3">
+            <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-welcome-list" data-toggle="list" href="#list-welcome" role="tab" aria-controls="welcome">Welcome</a>
+                <a class="list-group-item list-group-item-action" id="list-source-list" data-toggle="list" href="#list-source" role="tab" aria-controls="source">Source code</a>
+                <a class="list-group-item list-group-item-action" id="list-mongodb-list" data-toggle="list" href="#list-mongodb" role="tab" aria-controls="monogdb">Datastore</a>
+                <a class="list-group-item list-group-item-action" id="list-python-list" data-toggle="list" href="#list-python" role="tab" aria-controls="python">Data import</a>
+                <a class="list-group-item list-group-item-action" id="list-nodejs-list" data-toggle="list" href="#list-nodejs" role="tab" aria-controls="nodejs">API</a>
+                <a class="list-group-item list-group-item-action" id="list-angular-list" data-toggle="list" href="#list-angular" role="tab" aria-controls="angular">Web client</a>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-welcome" role="tabpanel" aria-labelledby="list-welcome-list">
+                    <p>Welcome and thanks for checking out my project.</p>
+                    <p>
+                        SafeScore is a simple, full-stack project built on the MEAN (Mongo-Express-Angular-Node.js) stack that demonstrates that power of open city data.
+
+                        Using publicly available data on NYC Open data portal for restaurant inspections, we can assist NYC residents in determining if the food served by favorite restaurants are safe to eat.
+                    </p>
+                    
+                    The application gives the user several methods for searching for restaurants along with their inspection grades and scores and history:
+                    <ul>
+                        <li>Restaurants located near where you are located right now.</li>
+                        <li>Restaurants located in a given zip code.</li>
+                        <li>Restaurants with a name that start with a particular string</li>
+                        <li>Restaurants that have a given grade (or no grade)</li>
+                    </ul>
+                    
+                    <p>
+                        More security? More testage? Faster performance? Better scalability? Better logging? I welcome any meaningful contributions that acheive those goals!
+                        go ahead and click the "Fork me on Github" link to start contributing.
+                    </p>
+                </div>
+
+                <div class="tab-pane fade show" id="list-source" role="tabpanel" aria-labelledby="list-source-list">
+                    <p>Fork the SafeScore repository to your own github account and create a local repo on your develoment machine.</p>
+        
+                    <p>
+                        <a href="https://github.com/pcarrasco23/FootlooseFinancialServices" target="_new">
+                            https://github.com/pcarrasco23/FootlooseFinancialServices
+                        </a>
+                    </p>
+                </div>
+                
+                <div class="tab-pane fade show" id="list-mongodb" role="tabpanel" aria-labelledby="list-mongodb-list">
+                    <p>The data store for the SafeScore app is a MongoDB database.</p>
+        
+                    <p>Install and run MongoDB with Homebrew</p>
+
+                    <div class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        brew update
+        brew install mongodb
+        mkdir -p /data/db
+        sudo chown -R '-id =un' /data/db
+        # Enter your password
+                        </code></pre>
+                    </div>
+        
+                    <p>Create a directory for the data and set the permissions.</p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        mkdir -p /data/db
+        sudo chown -R '-id =un' /data/db
+        # Enter your password
+                        </code></pre>
+                    </figure>
+        
+                    <p>Open a new terminal window and run the MongoDB daemon</p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        mongod
+                        </code></pre>
+                    </figure>
+        
+                    <p>Restore the coordinates collection to MongoDB database</p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        mongorestore --collection coordinates --db nycinspections coordinatesdump/coordinates.bson
+                        </code></pre>
+                    </figure>
+                </div>
+
+                <div class="tab-pane fade" id="list-python" role="tabpanel" aria-labelledby="list-python-list">
+                    <p>
+                        The dataimport code is a Python3 script that imports Restaurant Inspection data from NYC's open data portal into the MongoDB database.
+                        It will also import coordinates for each restaurant into the database.
+                    </p>
+                    <p>
+                        The following instructions will show you how to install Python3 and its dependencies on your development machine and run the script.
+                        If you already have a Python3 environment setup then you can go skip the Python3 installation step.
+                    </p>
+
+                    <p>Install Python 3 and pipenv</p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        brew install python
+        pip install --user pipenv
+                        </code></pre>
+                    </figure>
+
+                    <p>
+                        Add pipenv to your local path by editing your ~/.profile file and add the following to the bottom of the file.
+                        Then open a new terminal window.
+                    </p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        export PATH=~/Library/Python/3.6/bin:$PATH
+                        </code></pre>
+                    </figure>
+
+                    <p>Install dependencies for the data import script to the virtual environment and activate the virtual environment</p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        cd dataimport
+        pipenv install -r requirements.txt
+        pipenv shell
+                        </code></pre>
+                    </figure>
+
+                    <p>Run the data import Python script.</p>
+
+                    <p>This script will download the latest NYC Restaurant inspection data file and import the data into a MongoDB collection.</p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        python3 nycrestaurantdataimport.py
+                        </code></pre>
+                    </figure>
+
+                    For more detailed information about Python3 install on Mac OS X go to:
+                    <a href="http://docs.python-guide.org/en/latest/starting/install3/osx/" tagret="_new">
+                        http://docs.python-guide.org/en/latest/starting/install3/osx/
+                    </a>
+                </div>
+
+                <div class="tab-pane fade" id="list-nodejs" role="tabpanel" aria-labelledby="list-nodejs-list">
+                    <p>
+                        The API code is a domain service layer in front of the MongoDB database rewritten in Node.js using Express for the web application framework.
+                    </p>
+
+                    <p>Install Node (npm is installed with Node)</p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        brew install node
+                        </code></pre>
+                    </figure>
+
+                    <p>Install the npm mpdule dependencies for the service</p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        cd service
+        npm install
+                        </code></pre>
+                    </figure>
+
+                    <p>Run the tests for the service</p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        npm test
+                        </code></pre>
+                    </figure>
+
+                    <p>
+                        Open a separate terminal window and start the service. By default the service will run on port 3000.
+                        If your service needs to run on a different port you will need to make a change to
+                        the web client code on the Web client section with the port number.
+                    </p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        npm start
+                        </code></pre>
+                    </figure>
+                </div>
+
+                <div class="tab-pane fade" id="list-angular" role="tabpanel" aria-labelledby="list-angular-list">
+                    <p>
+                        The web client is an Angular application that requests data from the API.
+                    </p>
+
+                    <p>
+                        You will need a Google API key to run the mapping portion of the Angular web client.
+                        Go to 
+                        <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_new">
+                            https://developers.google.com/maps/documentation/javascript/get-api-key
+                        </a>
+                        to register your application and get a key.
+                    </p>
+
+                    <p>
+                        Once you have a Google API key, go to the "web" folder, and open the file called 
+                        "src/app/constants.ts" in your favorite editor (mine is nano).
+                    </p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        cd web
+        nano src/app/constants.ts
+                        </code></pre>
+                    </figure>
+
+                    <p>
+                        Enter your Google API key as the value of the googlemapsapi name-value pair in the constants dictionary and save the file.
+                        Also if your Node.js service is running on a port other than 3000 change the URL of the service in the serviceurl name-value pair.
+                    </p>
+
+                    <p>Install Angular and dependencies and start web application (make sure you are in the web folder)</p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        npm install
+                        </code></pre>
+                    </figure>
+
+                    <p>Run the tests for the web application</p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        npm test
+                        </code></pre>
+                    </figure>
+
+                    <p>Open a separate terminal window and start the web application</p>
+
+                    <figure class="highlight"><pre>
+                        <code class="language-sh" data-lang="sh">
+        npm start
+                        </code></pre>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="appMode" style="margin-top:100px;">
+    <div style="position:absolute;top:10px;left:30px;z-index:15;">
+        <a href="#" (click)="hideApp()"  style="text-decoration:none;">
+            <h1 style="font-weight:600;font-size:40px;color:steelblue;">SafeScore</h1>
+        </a>        
+    </div>
+
+    <nav style="margin-left:10px;">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Discover</a>
+            <a class="nav-item nav-link" id="nav-search-tab" data-toggle="tab" href="#nav-search" role="tab" aria-controls="nav-search" aria-selected="false">Search</a>
+            <a class="nav-item nav-link" id="nav-help-tab" data-toggle="tab" href="#nav-help" role="tab" aria-controls="nav-help" aria-selected="false">Help</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <app-discover></app-discover>
+        </div>
+        <div class="tab-pane fade" id="nav-search" role="tabpanel" aria-labelledby="nav-search-tab">
+            <app-search></app-search>
+        </div>
+        <div  class="tab-pane fade" id="nav-help" role="tabpanel" aria-labelledby="nav-help-tab">
+            <table class="howto">
+                <tr>
+                    <td class="howtoimgtd">
+                        <img src="/assets/images/discover-search.png"/>
+                    </td>
+                    <td>
+                        <p>
+                            In the Discover tab you can serch for restaurants using a Google map and markers.
+                            In the Search tab you can search for restaurants by name, zip code, and/or grade.
+                            You can toggle between the two tabs without loosing your place in the other tab.  
+                        </p> 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="howtoimgtd">
+                        <img src="/assets/images/find-zipcode.png"/>
+                    </td>
+                    <td>
+                        <p>
+                            In the Discover tab, click the "Find nearby" button to center the map to your current location. 
+                            If this is your first time using the app, you will be prompted for permission to send your current coordinates to the Google Map.
+                            Note that your coordinates are not used in anyway other than to center the map and find restaurants within a certain radius of the center.
+                        </p>
+
+                        <p>
+                            To search for restaurants in a particular zip code, enter the zip code in the "Enter zipcode" text box and hit the ENTER key.
+                            The map will center on the center of the zip code and return restaurants within a certain radius of that coordinate.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="howtoimgtd">
+                        <img src="/assets/images/marker.png"/>
+                    </td>
+                    <td>
+                        <p>
+                            Click on a marker in the map to view the details for the restaurant including the current grade and inspection history.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="howtoimgtd">
+                        <img src="/assets/images/grade-click.png"/>
+                    </td>
+                    <td>
+                        <p>
+                            In the detail section, click on the colored-buttons under the "Grade" column for a popup that explains how the grade is assigned to the restaurant.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="howtoimgtd">
+                        <img src="/assets/images/violations-click.png"/>
+                    </td>
+                    <td>
+                        <p>
+                            Also in the detail section, click on the numbered button under the "Violations" column to open the list of violations that were recorded for that particular inspection. 
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+          
+
+

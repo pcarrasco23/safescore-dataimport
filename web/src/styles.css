@@ -1,0 +1,39 @@
+/* Application-wide Styles */
+h1 {
+    color: #369;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 250%;
+}
+
+h2, h3 {
+    color: #444;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+}
+
+body, input[text], button {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* everywhere else */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.button span {
+    display: inline-block;
+    font-size: small;
+    color: white;
+    padding: 0.8em 0.7em 0.7em 0.7em;
+    background-color: #607D8B;
+    border-radius: 4px 4px 4px 4px;
+    margin-right: 0.7em;
+    cursor: pointer;
+}
+
+.button span.selected {
+    color: #607D8B;
+    background-color: #fff;
+    cursor: default;
+}
+
