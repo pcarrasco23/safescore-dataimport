@@ -1,3 +1,17 @@
+## Welcome and thanks for checking out my project.
+
+SafeScore is a simple, full-stack project built on the MEAN (Mongo-Express-Angular-Node.js) stack that demonstrates the power of open city data. Using publicly available data on NYC Open data portal for restaurant inspections, we can assist NYC residents in determining if the food served by favorite restaurants is safe to eat.
+
+The application gives the user several methods for searching for restaurants along with their inspection grades and scores and history:
+Restaurants located near where you are located right now.
+Restaurants located in a given zip code.
+Restaurants with a name that startx with a particular string
+Restaurants that have a given grade (or no grade)
+
+Would you like to see more security? More testage? Faster performance? Better scalability? Better logging? I welcome any meaningful contributions that acheive those goals! go ahead and click the "Fork me on Github" link to start contributing.
+
+Once you have the source code forked below are the dependencies for the application to work:
+
 ## Database
 
 The data store for the SafeScore app is a MongoDB database.
