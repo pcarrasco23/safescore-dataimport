@@ -20,16 +20,11 @@ Install and run MongoDB with Homebrew
 ```
         brew update
         brew install mongodb
-        mkdir -p /data/db
-        sudo chown -R '-id =un' /data/db
-        # Enter your password
 ```
 
-Create a directory for the data and set the permissions.
+Create a directory for the data.
 ```  
         mkdir -p /data/db
-        sudo chown -R '-id =un' /data/db
-        # Enter your password
 ```
 
 Open a new terminal window and run the MongoDB daemon

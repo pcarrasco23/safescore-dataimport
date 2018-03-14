@@ -16,7 +16,7 @@ def extractdata():
     # Open the CSV file and read the contents line by line
     print ("Downloading file...")   
 
-    #download_file(Constants.csv_file, Constants.local_csv_file)
+    download_file(Constants.csv_file, Constants.local_csv_file)
         
     with open(Constants.local_csv_file, "r") as infile:
         reader = csv.reader(infile, delimiter=',')
