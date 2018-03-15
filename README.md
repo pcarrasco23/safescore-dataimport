@@ -10,7 +10,8 @@ Restaurants that have a given grade (or no grade)
 
 Would you like to see more security? More testage? Faster performance? Better scalability? Better logging? I welcome any meaningful contributions that acheive those goals! go ahead and click the "Fork me on Github" link to start contributing.
 
-Once you have the source code forked below are the dependencies for the application to work:
+Once you have the source code forked below are the dependencies for the application to work.
+Below are installation instructions for Max OS X using HomeBrew. Installations for other Linux distributions are nearly the same.
 
 ## Database
 
@@ -42,6 +43,8 @@ Restore the coordinates collection to MongoDB database
 The dataimport code is a Python3 script that imports Restaurant Inspection data from NYC's open data portal into the MongoDB database. It will also import coordinates for each restaurant into the database.
 
 The following instructions will show you how to install Python3 and its dependencies on your development machine and run the script. If you already have a Python3 environment setup then you can go skip the Python3 installation step.
+
+*** Note that on Ubuntu "pip" should be replaced with "pip3".
 
 Install Python 3 and pipenv
 ```                        
@@ -114,7 +117,8 @@ Install Angular and dependencies and start web application (make sure you are in
         npm install
 ```
 
-Run the tests for the web application
+Run the tests for the web application. 
+*** Note that the Chrome browser must be installed on your machine for testing.
 ```     
         npm test
 ```
