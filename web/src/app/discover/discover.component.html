@@ -19,12 +19,11 @@
         [latitude] = "lat" 
         [longitude] = "lng" 
         [zoom] = "zoom" 
-        [class.markerSelected] = "selectedMarker != null"
         [clickableIcons] = "clickableIcons"
         [streetViewControl] = "streetViewControl"
         [styles] = "mapTypeStyle"
         (boundsChange) = "onBoundsChanged($event)"
-        (idle) = "onIdle($event)">
+        (idle) = "onIdle()">
         <agm-marker *ngFor="let marker of markers"
           [latitude]="marker.latitude" 
           [longitude]="marker.longitude" 
